@@ -2,7 +2,11 @@ import { Component } from '@angular/core';
 import { CodeModel } from '@ngstack/code-editor';
 
 const startingText = `
-% this is a realtime LaTeX editor
+% this is a realtime LaTeX editor!
+% made with AngularJS
+% see the source code here: https://github.com/Zeyu-Li/overleaf-lite
+
+\\pi = 3
 `;
 
 let beginningText = localStorage.getItem('beginningText')
@@ -16,7 +20,7 @@ let beginningText = localStorage.getItem('beginningText')
 })
 export class AppComponent {
   // title = 'overleaf-lite';
-  equation: string = '\\sum_{i=1}^nx_i';
+  equation = beginningText;
   theme = 'vs-dark';
 
   codeModel: CodeModel = {
@@ -33,6 +37,6 @@ export class AppComponent {
   };
 
   onCodeChanged(value) {
-    console.log('CODE', value);
+    this.equation = value;
   }
 }
