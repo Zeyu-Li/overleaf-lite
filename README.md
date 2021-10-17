@@ -1,12 +1,22 @@
 # Overleaf Lite
 
+![favicon](favicon.png)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
+
 A light-weight clone of [Overleaf](https://www.overleaf.com/)
 
 
 
-## Angular
+Has autosave on keypress and realtime rendering in LaTeX
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.13.
+## Screenshot
+
+![screenshot1](screenshot1.png)
+
+
+
+Made with Angular and generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.13.
 
 ## Development server
 
