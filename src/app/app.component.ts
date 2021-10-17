@@ -7,7 +7,7 @@ const startingText = `
 % made with AngularJS (Autosaves on keypress)
 % see the source code here: https://github.com/Zeyu-Li/overleaf-lite
 
-$\sum_{n=1}^{\infty} 2^{-n} = 1$
+\sum_{n=1}^{\\infty} 2^{-n} = 1
 `;
 
 let beginningText = localStorage.getItem('beginningText')
