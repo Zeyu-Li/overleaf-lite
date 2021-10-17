@@ -1,6 +1,6 @@
 <div class="container">
   <div class="container__editor">
-    <!-- <input value="{{ title }}" /> --><ngs-code-editor
+    <ngs-code-editor
       style="height: 100%"
       [theme]="theme"
       [codeModel]="codeModel"
@@ -9,5 +9,9 @@
     >
     </ngs-code-editor>
   </div>
-  <div class="container__output"></div>
+  <div class="container__output">
+    <div class="container__output__latex-container">
+      <ng-katex [equation]="equation"></ng-katex>
+    </div>
+  </div>
 </div>

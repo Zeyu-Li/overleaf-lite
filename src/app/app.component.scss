@@ -1,3 +1,5 @@
+// BEM style
+
 .container {
   display: flex;
   &__editor {
@@ -7,7 +9,9 @@
   }
   &__output {
     flex: 1;
-    // padding: 15px;
     min-height: 100vh;
+    &__latex-container {
+      padding: 15px;
+    }
   }
 }
