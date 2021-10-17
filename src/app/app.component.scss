@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  &__editor {
+    flex: 1;
+    // padding: 15px;
+    min-height: 100vh;
+  }
+  &__output {
+    flex: 1;
+    // padding: 15px;
+    min-height: 100vh;
+  }
+}
