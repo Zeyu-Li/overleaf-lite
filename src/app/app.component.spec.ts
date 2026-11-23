@@ -1,31 +1,34 @@
-import { TestBed, async } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { CodeEditorComponent } from '@ngstack/code-editor';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(async () => {
+    // Monaco is loaded from static assets at runtime, so stub the editor element out here.
+    TestBed.overrideComponent(AppComponent, {
+      remove: { imports: [CodeEditorComponent] },
+      add: { schemas: [CUSTOM_ELEMENTS_SCHEMA] },
+    });
+    await TestBed.configureTestingModule({ imports: [AppComponent] }).compileComponents();
   });
 
-  it(`should have as title 'overleaf-lite'`, () => {
+  it('renders the document as KaTeX', async () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('overleaf-lite');
+    await fixture.whenStable();
+
+    const preview: HTMLElement = fixture.nativeElement.querySelector('.container__output');
+    expect(preview.querySelector('.katex')).toBeTruthy();
   });
 
-  it('should render title', () => {
+  it('re-renders and autosaves when the code changes', async () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('overleaf-lite app is running!');
+    fixture.componentInstance.onCodeChanged('\\frac{a}{b}');
+    await fixture.whenStable();
+
+    const preview: HTMLElement = fixture.nativeElement.querySelector('.container__output');
+    expect(preview.querySelector('.mfrac')).toBeTruthy();
+    expect(localStorage.getItem('beginningText')).toBe('\\frac{a}{b}');
   });
 });
